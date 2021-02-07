@@ -1,6 +1,10 @@
 def check_in_row(board):
     '''
     check if there is same numbers in a row
+    >>> validate_board(["**** ****", "***1 ****", "**  3****",\
+    "* 4 1****", "     9 5 ", " 6  83  *", "3   6  **", \
+    "  8  2***", "  2  ****"])
+    True
     '''
     for row in board:
         for sign in row:
@@ -8,14 +12,18 @@ def check_in_row(board):
                 count = row.count(sign)
                 if count > 1:
                     return False
-                return True      
+                return True
 
 def check_in_column(board):
     '''
-    check if there is same numbers in a column
+    check if there are same numbers in a column
+    >>> validate_board(["**** ****", "***1 ****", "**  3****",\
+    "* 4 1****", "     9 5 ", " 6  83  *", "3   6  **", \
+    "  8  2***", "  2  ****"])
+    True
     '''
     column_lst = []
-    
+
     for i in range(len(board[0])):
         column = ""
         for j in range(len(board)):
@@ -23,15 +31,19 @@ def check_in_column(board):
             board[j][i] != " ":
                 column += board[j][i]
         column_lst.append(column)
-    
+
     for obj in column_lst:
         for element in obj:
             if obj.count(element) > 1:
                 return False
-    
+
     return True
 
 def color_list(board, middle_x, middle_y):
+    """
+    creates astring that contains numbers located on the
+    same-colored area of the board
+    """
     beginning_column = middle_y - 5
     end_row = middle_x + 5
     color = ""
@@ -49,6 +61,14 @@ def color_list(board, middle_x, middle_y):
     return color
 
 def check_in_color(board):
+    """
+    checks the uniqness of each number in the
+    same-colored are on the board
+    >>> validate_board(["**** ****", "***1 ****", "**  3****",\
+    "* 4 1****", "     9 5 ", " 6  83  *", "3   6  **", \
+    "  8  2***", "  2  ****"])
+    True
+    """
     lst = []
 
     for i in range(5):
@@ -63,22 +83,13 @@ def check_in_color(board):
 def validate_board(board):
     '''
     Check if there are same numbers in a same colored area
+    >>> validate_board(["**** ****", "***1 ****", "**  3****",\
+    "* 4 1****", "     9 5 ", " 6  83  *", "3   6  **", \
+    "  8  2***", "  2  ****"])
+    True
     '''
-    if check_in_row(board) == True and check_in_column(board) == True and check_in_color(board) == True:
+    if check_in_row(board) == True and\
+    check_in_column(board) == True and\
+    check_in_color(board) == True:
         return True
     return False
-
-board = [
- "**** ****",\
- "***1 ****",\
- "**  3****",\
- "* 4 1****",\
- "     9 5 ",\
- " 6  83  *",\
- "3   6  **",\
- "  8  2***",\
- "  2  ****"]
-print(validate_board(board))
-# print(check_in_row(board))
-# print(check_in_column(board))
-# print(check_in_color(board))
