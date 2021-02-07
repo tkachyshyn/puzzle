@@ -1,3 +1,8 @@
+'''
+this module check whether the numbers located on
+a board are unique in columns, rowa and same-colored areas
+'''
+
 def check_in_row(board):
     '''
     check if there is same numbers in a row
