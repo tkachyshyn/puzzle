@@ -12,12 +12,16 @@ def check_in_row(board):
     True
     '''
     for row in board:
+        lst =[]
         for sign in row:
             if sign != "*" and sign != " ":
-                count = row.count(sign)
-                if count > 1:
-                    return False
-                return True
+                lst.append(sign)
+
+    for item in lst:
+        if lst.count(item) > 1:
+            return False
+
+    return True
 
 def check_in_column(board):
     '''
@@ -93,8 +97,18 @@ def validate_board(board):
     "  8  2***", "  2  ****"])
     True
     '''
-    if check_in_row(board) == True and\
-    check_in_column(board) == True and\
-    check_in_color(board) == True:
-        return True
-    return False
+    lst = []
+    for item in board:
+        for element in item:
+            if element != " " or\
+            element != "*":
+                lst.append(element)
+    
+    if lst = []:
+        return False
+    else:
+        if check_in_row(board) == True and\
+        check_in_column(board) == True and\
+        check_in_color(board) == True:
+            return True
+        return False
